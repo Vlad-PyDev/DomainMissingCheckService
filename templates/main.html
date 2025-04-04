@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Проверка домена</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Проверка доступности домена</h1>
+    <form method="post" action="{{ url_for('domain') }}">
+      <input type="text" name="domain" placeholder="Введите домен" required>
+      <br><br>
+      <button type="submit">Проверить</button>
+    </form>
+    {% if availability is not none %}
+      {% if availability %}
+        <h2>Домен {{ domain }} свободен!</h2>
+      {% else %}
+        <h2>Домен {{ domain }} занят.</h2>
+      {% endif %}
+    {% endif %}
+    <a href="{{ url_for('index') }}" class="button">На главную</a>
+  </div>
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
